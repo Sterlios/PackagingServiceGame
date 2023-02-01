@@ -48,9 +48,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         Vector3 direction3D = new Vector3(direction2D.x, 0, direction2D.y);
         
         if(direction3D != Vector3.zero)
-        {
             Interapted?.Invoke(_movement.Animations);
-        }
 
         bool isRun = _input.Player.IncreaseSpeed.IsPressed();
         _movement.Move(direction3D, isRun);
@@ -72,8 +70,6 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         bool isInteract = _input.Player.Interactive.triggered;
 
         if (isInteract)
-        {
             _interactable.Interact();
-        }
     }
 }

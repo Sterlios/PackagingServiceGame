@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _moveSpeedMultiply;
     [SerializeField] private float _rotateSpeed;
+
     private ActionAnimator _animator;
 
     public ActionAnimator Animations => _animator;

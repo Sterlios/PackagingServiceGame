@@ -9,7 +9,6 @@ public class Attackable : MonoBehaviour
     private bool IsAttackAnimation => _animator.IsAnimationPlay(ActionAnimator.AttackAnimationName);
     private bool IsIdleAnimation => _animator.IsAnimationPlay(ActionAnimator.IdleAnimationName);
     private bool IsAttackIdleAnimation => _animator.IsAnimationPlay(ActionAnimator.AttackIdleAnimationName);
-
     public ActionAnimator Animations => _animator;
 
     private void Awake()

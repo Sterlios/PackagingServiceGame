@@ -13,6 +13,7 @@ class Carrying : Interactable
     [SerializeField] private LayerMask _layerMask;
 
     private float _raycastHeight = 0.1f;
+
     public Storage Hands { get; private set; }
 
     private void Awake()

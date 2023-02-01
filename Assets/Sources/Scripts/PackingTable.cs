@@ -4,7 +4,6 @@ using UnityEngine.Events;
 public class PackingTable : MonoBehaviour
 {
     private Coroutine _packJob;
-
     private Player _player;
     private bool _isPack = false;
 
