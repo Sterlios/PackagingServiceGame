@@ -41,13 +41,9 @@ public class PackingZone : Interactable
     public override void Interact()
     {
         if (HasItemInHands)
-        {
             HandleItemInHands();
-        }
         else
-        {
             HandleNoItemInHands();
-        }
     }
 
     private void HandleItemInHands()
@@ -71,13 +67,9 @@ public class PackingZone : Interactable
     private void HandleNoItemInHands()
     {
         if (HasItemOnTable)
-        {
             PackItem();
-        }
         else
-        {
             PickUpItem();
-        }
     }
 
     private void PickUpItem()

@@ -5,6 +5,10 @@ using UnityEngine.Events;
 public class Attackable : MonoBehaviour
 {
     private ActionAnimator _animator;
+    
+    private bool IsAttackAnimation => _animator.IsAnimationPlay(ActionAnimator.AttackAnimationName);
+    private bool IsIdleAnimation => _animator.IsAnimationPlay(ActionAnimator.IdleAnimationName);
+    private bool IsAttackIdleAnimation => _animator.IsAnimationPlay(ActionAnimator.AttackIdleAnimationName);
 
     public ActionAnimator Animations => _animator;
 
@@ -15,12 +19,8 @@ public class Attackable : MonoBehaviour
 
     public void Attack()
     {
-        bool isAttackAnimation = _animator.IsAnimationPlay(ActionAnimator.AttackAnimationName);
-        bool isIdleAnimation = _animator.IsAnimationPlay(ActionAnimator.IdleAnimationName);
-        bool isAttackIdleAnimation = _animator.IsAnimationPlay(ActionAnimator.AttackIdleAnimationName);
-
-        if (!isAttackAnimation)
-            if(isIdleAnimation || isAttackIdleAnimation)
+        if (!IsAttackAnimation)
+            if(IsIdleAnimation || IsAttackIdleAnimation)
                 _animator.SetAnimatorParameter(ActionAnimator.AttackParameterHash);
     }
 }
