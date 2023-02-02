@@ -12,13 +12,8 @@ public class PackingTable : Storage
     public override void Put(Item item)
     {
         item.transform.parent = transform;
-        Vector3 position = _itemPlace.Position;
-
-        for (Transform t = transform; t != null; t = t.parent)
-            if (t.position != Vector3.zero)
-                position = t.position + t.rotation * _itemPlace.Position;
-
-        Quaternion rotation = Quaternion.Euler(_itemPlace.Rotation.eulerAngles + transform.rotation.eulerAngles);
+        Vector3 position = _itemPlace.GetWorldPosition(transform);
+        Quaternion rotation = _itemPlace.GetWorldRotation(transform);
 
         item.transform.SetPositionAndRotation(position, rotation);
 

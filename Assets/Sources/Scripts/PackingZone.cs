@@ -82,22 +82,11 @@ public class PackingZone : Interactable
     
     private void PutPlayerInPackingPlace()
     {
-        Vector3 position = GetPlayerPosition();
-        Quaternion rotation = Quaternion.Euler(_playerPlace.Rotation.eulerAngles + transform.rotation.eulerAngles);
-        
+        Vector3 position = _playerPlace.GetWorldPosition(transform);
+        Quaternion rotation = _playerPlace.GetWorldRotation(transform);
+
         _player.transform.SetPositionAndRotation(position, rotation);
         Animations.SetAnimatorParameter(ActionAnimator.PackingParameterHash);
-    }
-
-    private Vector3 GetPlayerPosition()
-    {
-        Vector3 position = _playerPlace.Position;
-
-        for (Transform t = transform; t != null; t = t.parent)
-            if (t.position != Vector3.zero)
-                position = t.position + t.rotation * _playerPlace.Position;
-
-        return position;
     }
 
     private void PutItemOnTable()
