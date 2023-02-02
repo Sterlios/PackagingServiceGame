@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PackingPlace : MonoBehaviour
+[System.Serializable]
+class PackingPlace
 {
-    public Item Pack(Player player, PackingTable table, ActionAnimator actionAnimator)
-    {
-        player.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        actionAnimator.SetAnimatorParameter(ActionAnimator.PackingParameterHash);
-        return table.Pack(player);
-    }
+    [SerializeField] private Vector3 _position;
+    [SerializeField] private Quaternion _rotation;
+
+    public Vector3 Position => _position;
+    public Quaternion Rotation => _rotation;
 }
