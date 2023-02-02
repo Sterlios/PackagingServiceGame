@@ -6,13 +6,13 @@ class PackingPlace
     [SerializeField] private Vector3 _position;
     [SerializeField] private Quaternion _rotation;
 
-    public Vector3 GetWorldPosition(Transform transform)
+    public Vector3 GetWorldPosition(Transform currentTransform)
     {
         Vector3 position = _position;
 
-        for (Transform t = transform; t != null; t = t.parent)
-            if (t.position != Vector3.zero)
-                position = t.position + t.rotation * _position;
+        for (Transform transform = currentTransform; transform != null; transform = transform.parent)
+            if (transform.position != Vector3.zero)
+                position = transform.position + transform.rotation * _position;
 
         return position;
     }

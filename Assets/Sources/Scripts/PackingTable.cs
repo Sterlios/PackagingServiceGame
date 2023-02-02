@@ -24,21 +24,19 @@ public class PackingTable : Storage
     {
         Item item = null;
 
-        if (!_isPack)
-        {
-            _isPack = true; //после прерванного процесса упаковки, следующая упаковка работает не корректно
-            _player = player;
-            _player.Interapted += OnInterapted;
+        _player = player;
+        _player.Interapted += OnInterapted;
+
+        if (_packJob == null)
             _packJob = StartCoroutine(CurrentItem.Pack());
 
-            if (CurrentItem.IsPacking)
-            {
-                if(_packJob != null)
-                    StopCoroutine(_packJob);
+        if (CurrentItem.IsPacking)
+        {
+            if (_packJob != null)
+                StopCoroutine(_packJob);
 
-                _player.Interapted -= OnInterapted;
-                item = Drop();
-            }
+            _player.Interapted -= OnInterapted;
+            item = Drop();
         }
 
         _isPack = false;
