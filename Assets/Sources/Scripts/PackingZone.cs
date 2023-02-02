@@ -4,12 +4,12 @@ public class PackingZone : Interactable
 {
     [SerializeField] private PackingTable _table;
     [SerializeField] private Carrying _carrying;
-    [SerializeField] private PackingPlace _packingPlace;
+    [SerializeField] private PackingPlace _playerPlace;
 
     private Player _player;
 
     private bool HasItemInHands => _carrying.Hands.HasItem;
-    private bool HasItemOnTable => _table.Place.HasItem;
+    private bool HasItemOnTable => _table.HasItem;
     private bool IsCurrentItemPacked => _carrying.Hands.CurrentItem?.IsPacking ?? false;
 
     private void OnTriggerEnter(Collider other)
@@ -83,7 +83,7 @@ public class PackingZone : Interactable
     private void PutPlayerInPackingPlace()
     {
         Vector3 position = GetPlayerPosition();
-        Quaternion rotation = Quaternion.Euler(_packingPlace.Rotation.eulerAngles + transform.rotation.eulerAngles);
+        Quaternion rotation = Quaternion.Euler(_playerPlace.Rotation.eulerAngles + transform.rotation.eulerAngles);
         
         _player.transform.SetPositionAndRotation(position, rotation);
         Animations.SetAnimatorParameter(ActionAnimator.PackingParameterHash);
@@ -91,11 +91,11 @@ public class PackingZone : Interactable
 
     private Vector3 GetPlayerPosition()
     {
-        Vector3 position = _packingPlace.Position;
+        Vector3 position = _playerPlace.Position;
 
         for (Transform t = transform; t != null; t = t.parent)
             if (t.position != Vector3.zero)
-                position = t.position + t.rotation * _packingPlace.Position;
+                position = t.position + t.rotation * _playerPlace.Position;
 
         return position;
     }
