@@ -4,17 +4,17 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Attackable))]
 [RequireComponent(typeof(Carrying))]
-[RequireComponent(typeof(Interaptable))]
+[RequireComponent(typeof(Breakable))]
 public class Player : MonoBehaviour, IAttackable, IMovable
 {
     private Movement _movement;
     private Attackable _attack;
     private Interactable _interactable;
-    private Interaptable _interaptable;
+    private Breakable _breakable;
 
     private PlayerInput _input;
 
-    public event UnityAction Interapted;
+    public event UnityAction BrokeAction;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         _movement = GetComponent<Movement>();
         _attack = GetComponent<Attackable>();
         _interactable = GetComponent<Carrying>();
-        _interaptable = GetComponent<Interaptable>();
+        _breakable = GetComponent<Breakable>();
     }
 
     private void Update()
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         Vector3 direction3D = new Vector3(direction2D.x, 0, direction2D.y);
         
         if(direction3D != Vector3.zero)
-            Interapted?.Invoke();
+            BrokeAction?.Invoke();
 
         bool isRun = _input.Player.IncreaseSpeed.IsPressed();
         _movement.Move(direction3D, isRun);
@@ -63,14 +63,14 @@ public class Player : MonoBehaviour, IAttackable, IMovable
 
         if (isAttack)
         {
-            Interapted?.Invoke();
+            BrokeAction?.Invoke();
             _attack.Attack();
         }
     }
 
-    public void Interapt()
+    public void BreakAction()
     {
-        _interaptable.Interapt();
+        _breakable.BreakAction();
     }
 
     private void Interact()

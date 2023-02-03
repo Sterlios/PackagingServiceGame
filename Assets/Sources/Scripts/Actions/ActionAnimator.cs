@@ -13,7 +13,7 @@ public class ActionAnimator : MonoBehaviour
     public static int PackingParameterHash => Animator.StringToHash("isPacking");
     public static int TakeDamageParameterHash => Animator.StringToHash("isTakeDamage");
     public static int DeadParameterHash => Animator.StringToHash("isDead");
-    public static int InteraptParameterHash => Animator.StringToHash("Interapt");
+    public static int BreakActionParameterHash => Animator.StringToHash("BreakAction");
 
     private void Awake()
     {

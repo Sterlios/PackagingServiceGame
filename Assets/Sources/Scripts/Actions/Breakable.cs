@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(ActionAnimator))]
-class Interaptable : MonoBehaviour
+class Breakable : MonoBehaviour
 {
     private ActionAnimator _animator;
 
@@ -10,8 +10,8 @@ class Interaptable : MonoBehaviour
         _animator = GetComponent<ActionAnimator>();
     }
 
-    public void Interapt()
+    public void BreakAction()
     {
-        _animator.SetAnimatorParameter(ActionAnimator.InteraptParameterHash);
+        _animator.SetAnimatorParameter(ActionAnimator.BreakActionParameterHash);
     }
 }

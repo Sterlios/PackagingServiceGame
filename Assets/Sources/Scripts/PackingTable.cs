@@ -21,7 +21,7 @@ public class PackingTable : Storage
         if (_player == null)
         {
             _player = player;
-            _player.Interapted += OnInterapted;
+            _player.BrokeAction += OnBreakActioned;
             CurrentItem.Packed += OnPacked;
 
             _packJob = StartCoroutine(CurrentItem.Pack());
@@ -30,7 +30,7 @@ public class PackingTable : Storage
 
     public void FinishPack()
     {
-        _player.Interapted -= OnInterapted;
+        _player.BrokeAction -= OnBreakActioned;
         CurrentItem.Packed -= OnPacked;
 
         if (_packJob != null)
@@ -47,9 +47,9 @@ public class PackingTable : Storage
         FinishPack();
     }
 
-    private void OnInterapted()
+    private void OnBreakActioned()
     {
-        _player.Interapt();
+        _player.BreakAction();
         FinishPack();
     }
 }
