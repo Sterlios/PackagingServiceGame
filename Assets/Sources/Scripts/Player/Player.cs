@@ -4,11 +4,13 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Attackable))]
 [RequireComponent(typeof(Carrying))]
+[RequireComponent(typeof(Interaptable))]
 public class Player : MonoBehaviour, IAttackable, IMovable
 {
     private Movement _movement;
     private Attackable _attack;
     private Interactable _interactable;
+    private Interaptable _interaptable;
 
     private PlayerInput _input;
 
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         _movement = GetComponent<Movement>();
         _attack = GetComponent<Attackable>();
         _interactable = GetComponent<Carrying>();
+        _interaptable = GetComponent<Interaptable>();
     }
 
     private void Update()
@@ -63,6 +66,11 @@ public class Player : MonoBehaviour, IAttackable, IMovable
             Interapted?.Invoke();
             _attack.Attack();
         }
+    }
+
+    public void Interapt()
+    {
+        _interaptable.Interapt();
     }
 
     private void Interact()

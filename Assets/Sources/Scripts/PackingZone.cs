@@ -95,7 +95,6 @@ public class PackingZone : Interactable
     private void PutPlayerInPackingPlace()
     {
         _playerPlace.SetPositionAndRotation(transform, _player.transform);
-
         Animations.SetAnimatorParameter(ActionAnimator.PackingParameterHash);
     }
 

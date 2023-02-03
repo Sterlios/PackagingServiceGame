@@ -12,9 +12,7 @@ public class PackingTable : Storage
     public override void Put(Item item)
     {
         item.transform.parent = transform;
-
         _itemPlace.SetPositionAndRotation(transform, item.transform);
-
         base.Put(item);
     }
 
@@ -51,6 +49,7 @@ public class PackingTable : Storage
 
     private void OnInterapted()
     {
+        _player.Interapt();
         FinishPack();
     }
 }
