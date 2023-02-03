@@ -6,7 +6,15 @@ class PackingPlace
     [SerializeField] private Vector3 _position;
     [SerializeField] private Quaternion _rotation;
 
-    public Vector3 GetWorldPosition(Transform currentTransform)
+    public void SetPositionAndRotation(Transform placeTransform, Transform targetTransform)
+    {
+        Vector3 position = GetWorldPosition(placeTransform);
+        Quaternion rotation = GetWorldRotation(placeTransform);
+
+        targetTransform.SetPositionAndRotation(position, rotation);
+    }
+
+    private Vector3 GetWorldPosition(Transform currentTransform)
     {
         Vector3 position = _position;
 
@@ -17,7 +25,7 @@ class PackingPlace
         return position;
     }
 
-    public Quaternion GetWorldRotation(Transform currentTransform)
+    private Quaternion GetWorldRotation(Transform currentTransform)
     {
         return Quaternion.Euler(_rotation.eulerAngles + currentTransform.rotation.eulerAngles);
     }

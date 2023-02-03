@@ -89,14 +89,13 @@ public class PackingZone : Interactable
     private void FinishPack(Item item)
     {
         _carrying.Put(item);
+        _table.FinishedPack -= OnFinishedPack;
     }
 
     private void PutPlayerInPackingPlace()
     {
-        Vector3 position = _playerPlace.GetWorldPosition(transform);
-        Quaternion rotation = _playerPlace.GetWorldRotation(transform);
+        _playerPlace.SetPositionAndRotation(transform, _player.transform);
 
-        _player.transform.SetPositionAndRotation(position, rotation);
         Animations.SetAnimatorParameter(ActionAnimator.PackingParameterHash);
     }
 

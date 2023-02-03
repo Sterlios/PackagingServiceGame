@@ -42,6 +42,7 @@ class Carrying : Interactable
             item.GetComponent<Rigidbody>().isKinematic = true;
             Hands.Put(item);
 
+            Animations.SetAnimatorParameter(ActionAnimator.InteraptParameterHash);
             Animations.SetAnimatorParameter(ActionAnimator.CarryingParameterHash, true);
         }
     }

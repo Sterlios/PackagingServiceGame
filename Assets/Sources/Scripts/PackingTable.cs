@@ -12,10 +12,8 @@ public class PackingTable : Storage
     public override void Put(Item item)
     {
         item.transform.parent = transform;
-        Vector3 position = _itemPlace.GetWorldPosition(transform);
-        Quaternion rotation = _itemPlace.GetWorldRotation(transform);
 
-        item.transform.SetPositionAndRotation(position, rotation);
+        _itemPlace.SetPositionAndRotation(transform, item.transform);
 
         base.Put(item);
     }
