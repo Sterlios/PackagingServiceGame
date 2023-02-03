@@ -17,8 +17,8 @@ class PackingPlace
         return position;
     }
 
-    public Quaternion GetWorldRotation(Transform transform)
+    public Quaternion GetWorldRotation(Transform currentTransform)
     {
-        return Quaternion.Euler(_rotation.eulerAngles + transform.rotation.eulerAngles);
+        return Quaternion.Euler(_rotation.eulerAngles + currentTransform.rotation.eulerAngles);
     }
 }

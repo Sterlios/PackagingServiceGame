@@ -7,7 +7,7 @@ public class PackingTable : Storage
 
     private Coroutine _packJob;
     private Player _player;
-    private bool _isPack = false;
+    public event UnityAction<Item> FinishedPack;
 
     public override void Put(Item item)
     {
@@ -20,36 +20,39 @@ public class PackingTable : Storage
         base.Put(item);
     }
 
-    public Item Pack(Player player)
+    public void StartPack(Player player)
     {
-        Item item = null;
-
-        _player = player;
-        _player.Interapted += OnInterapted;
-
-        if (_packJob == null)
-            _packJob = StartCoroutine(CurrentItem.Pack());
-
-        if (CurrentItem.IsPacking)
+        if (_player == null)
         {
-            if (_packJob != null)
-                StopCoroutine(_packJob);
+            _player = player;
+            _player.Interapted += OnInterapted;
+            CurrentItem.Packed += OnPacked;
 
-            _player.Interapted -= OnInterapted;
-            item = Drop();
+            _packJob = StartCoroutine(CurrentItem.Pack());
         }
-
-        _isPack = false;
-
-        return item;
     }
 
-    private void OnInterapted(ActionAnimator actionAnimator)
+    public void FinishPack()
     {
+        _player.Interapted -= OnInterapted;
+        CurrentItem.Packed -= OnPacked;
+
         if (_packJob != null)
             StopCoroutine(_packJob);
 
-        actionAnimator.SetAnimatorParameter(ActionAnimator.InteraptParameterHash);
-        _player.Interapted -= OnInterapted;
+        if (CurrentItem.IsPacking)
+            FinishedPack?.Invoke(Drop());
+
+        _player = null;
+    }
+
+    private void OnPacked()
+    {
+        FinishPack();
+    }
+
+    private void OnInterapted()
+    {
+        FinishPack();
     }
 }

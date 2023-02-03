@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PackingZone : Interactable
 {
@@ -8,6 +9,8 @@ public class PackingZone : Interactable
 
     private Player _player;
 
+    public event UnityAction StartedPack;
+
     private bool HasItemInHands => _carrying.Hands.HasItem;
     private bool HasItemOnTable => _table.HasItem;
     private bool IsCurrentItemPacked => _carrying.Hands.CurrentItem?.IsPacking ?? false;
@@ -15,7 +18,6 @@ public class PackingZone : Interactable
     private void OnTriggerEnter(Collider other)
     {
         ActionAnimator actionAnimator = other.GetComponent<ActionAnimator>();
-
 
         if (actionAnimator != null)
             SetAnimator(actionAnimator);
@@ -75,11 +77,20 @@ public class PackingZone : Interactable
     private void PackItem()
     {
         PutPlayerInPackingPlace();
+        _table.StartPack(_player);
+        _table.FinishedPack += OnFinishedPack;
+    }
 
-        Item item = _table.Pack(_player);
+    private void OnFinishedPack(Item item)
+    {
+        FinishPack(item);
+    }
+
+    private void FinishPack(Item item)
+    {
         _carrying.Put(item);
     }
-    
+
     private void PutPlayerInPackingPlace()
     {
         Vector3 position = _playerPlace.GetWorldPosition(transform);

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
 
     private PlayerInput _input;
 
-    public event UnityAction<ActionAnimator> Interapted;
+    public event UnityAction Interapted;
 
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         Vector3 direction3D = new Vector3(direction2D.x, 0, direction2D.y);
         
         if(direction3D != Vector3.zero)
-            Interapted?.Invoke(_movement.Animations);
+            Interapted?.Invoke();
 
         bool isRun = _input.Player.IncreaseSpeed.IsPressed();
         _movement.Move(direction3D, isRun);
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IAttackable, IMovable
 
         if (isAttack)
         {
-            Interapted?.Invoke(_attack.Animations);
+            Interapted?.Invoke();
             _attack.Attack();
         }
     }
