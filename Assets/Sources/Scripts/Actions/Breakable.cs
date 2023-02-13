@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(ActionAnimator))]
-class Breakable : MonoBehaviour
+public class Breakable : MonoBehaviour
 {
     private ActionAnimator _animator;
 

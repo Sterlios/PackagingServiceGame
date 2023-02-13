@@ -8,8 +8,8 @@ public class Item : MonoBehaviour
     [SerializeField] private float _step;
 
     public float CurrentProgress { get; private set; } = 0;
-    public event UnityAction Packed;
     public bool IsPacking => CurrentProgress == _packingTime;
+    public event UnityAction<Item> Packed;
 
     public IEnumerator Pack()
     {
@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
             CurrentProgress = Mathf.MoveTowards(CurrentProgress, _packingTime, _step * Time.deltaTime);
 
             if (IsPacking)
-                Packed?.Invoke();
+                Packed?.Invoke(this);
 
             yield return null;
         }

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5618333086245880508}
   - component: {fileID: 120668566017937227}
   - component: {fileID: 7663014344982042215}
-  - component: {fileID: 1232657435}
+  - component: {fileID: 4208968120557348782}
+  - component: {fileID: 1424552331876225203}
   m_Layer: 0
   m_Name: Zone
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1232657435
+--- !u!114 &4208968120557348782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,14 +109,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 302910088687100908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69f964267221374a9fffae0030aaff2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2745f0a1dafbced41bceae9002d0883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _table: {fileID: 1940683347564556884}
-  _carrying: {fileID: 0}
-  _playerPlace:
-    _position: {x: 0, y: 0, z: -0.35}
-    _rotation: {x: 0, y: 0, z: 0, w: 0}
+  _place: {fileID: 6435237925473542569}
+--- !u!114 &1424552331876225203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302910088687100908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367c0b071754f36428b059011eade284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052203434889776983
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +222,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4514220838931919751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7031314059859803812}
+  - component: {fileID: 6435237925473542569}
+  m_Layer: 0
+  m_Name: StoragePlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7031314059859803812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4514220838931919751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.001, y: 0.646, z: 0.249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 435014764489084455}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6435237925473542569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4514220838931919751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed30252c12636ce45b34fd5e5d983f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6031621813872241547
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +664,6 @@ GameObject:
   m_Component:
   - component: {fileID: 435014764489084455}
   - component: {fileID: 7958733483887407607}
-  - component: {fileID: 1940683347564556884}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -637,6 +689,7 @@ Transform:
   - {fileID: 2291959771047304405}
   - {fileID: 9104350902849773123}
   - {fileID: 1892666422649258735}
+  - {fileID: 7031314059859803812}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -656,18 +709,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1940683347564556884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7297411529497389715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2f109b55b8f96b4ca0c7d8e18d24955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemPlace:
-    _position: {x: 0, y: 0.8, z: 0.15}
-    _rotation: {x: 0, y: 0, z: 0, w: 0}

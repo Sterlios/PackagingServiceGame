@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6565864435793968190}
   - component: {fileID: 2109123181982965120}
   - component: {fileID: 3424185613488050222}
-  - component: {fileID: 6153895731993157217}
+  - component: {fileID: 4450019812361021980}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -61,8 +61,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,19 +83,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6153895731993157217
-BoxCollider:
+--- !u!114 &4450019812361021980
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3450069243384648013}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8a443fb6aa1ac4590178eb8dd05617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unpacking: {fileID: 2100000, guid: 7c34a90cb360ef74fb037e4ff424b80c, type: 2}
+  _packing: {fileID: 2100000, guid: 724d8aad3af5ad44f9e28b998424e2f9, type: 2}
 --- !u!1 &6240434855623927833
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8709307497362120165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240434855623927833}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.508, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -140,7 +140,8 @@ GameObject:
   - component: {fileID: 5509321735313317397}
   - component: {fileID: 8951566317585664657}
   - component: {fileID: 5085270846080356039}
-  m_Layer: 0
+  - component: {fileID: 1416403550}
+  m_Layer: 3
   m_Name: Item-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,3 +193,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1416403550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815185996195166539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854dd77c6b800144baf68d9ab5a96e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _packingTime: 10
+  _step: 1
