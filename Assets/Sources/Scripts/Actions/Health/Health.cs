@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     public event UnityAction<float> ChangedHealth;
     public event UnityAction Died;
 
-    private void Awake()
+    private void OnEnable()
     {
         _currentHealth = _maxHealth;
     }
@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         Died?.Invoke();
+        _currentHealth = _maxHealth;
     }
 }
 

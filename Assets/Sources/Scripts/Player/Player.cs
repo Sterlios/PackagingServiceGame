@@ -11,7 +11,6 @@ public class Player : MonoBehaviour, IAttackable, IMovable
     private Attackable _attack;
     private Interactable _interactable;
     private Breakable _breakable;
-    private AttackZone _attackZone;
 
     private PlayerInput _input;
 
@@ -26,11 +25,6 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         _attack = GetComponent<Attackable>();
         _interactable = GetComponent<Interactable>();
         _breakable = GetComponent<Breakable>();
-    }
-
-    private void Start()
-    {
-        _attackZone = GetComponentInChildren<AttackZone>();
     }
 
     private void Update()
@@ -60,7 +54,6 @@ public class Player : MonoBehaviour, IAttackable, IMovable
         {
             BrokeAction?.Invoke();
             _attack.Attack();
-            _attackZone.Attack();
         }
     }
 

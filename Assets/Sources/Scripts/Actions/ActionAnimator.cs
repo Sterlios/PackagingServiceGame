@@ -20,6 +20,8 @@ public class ActionAnimator : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public bool IsAnimationPlay(string name) => _animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+
     public void SetAnimatorParameter(int hash)
     {
         _animator.SetTrigger(hash);
@@ -35,10 +37,4 @@ public class ActionAnimator : MonoBehaviour
         _animator.SetFloat(hash, value);
     }
 
-    public bool IsAnimationPlay(string name)
-    {
-        var animatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-
-        return animatorStateInfo.IsName(name);
-    }
 }

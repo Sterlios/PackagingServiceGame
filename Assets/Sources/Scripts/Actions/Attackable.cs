@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Attackable : MonoBehaviour
 {
     private ActionAnimator _animator;
+    private Weapon _weapon;
     
     private bool IsAttackAnimation => _animator.IsAnimationPlay(ActionAnimator.AttackAnimationName);
     private bool IsIdleAnimation => _animator.IsAnimationPlay(ActionAnimator.IdleAnimationName);
@@ -14,6 +15,7 @@ public class Attackable : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<ActionAnimator>();
+        _weapon = GetComponentInChildren<Weapon>();
     }
 
     public void Attack()

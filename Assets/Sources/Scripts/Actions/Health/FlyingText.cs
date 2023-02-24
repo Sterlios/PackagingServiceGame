@@ -12,7 +12,7 @@ public class FlyingText : MonoBehaviour
     
     private TMP_Text _damageText;
 
-    public event UnityAction<FlyingText> FinishedFly;
+    public event UnityAction FinishedFly;
 
     private Coroutine _moveJob;
 
@@ -40,7 +40,7 @@ public class FlyingText : MonoBehaviour
             yield return null;
         }
 
-        FinishedFly?.Invoke(this);
+        FinishedFly?.Invoke();
         StopCoroutine(_moveJob);
     }
 }
