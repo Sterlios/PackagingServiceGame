@@ -32,32 +32,24 @@ public class ItemDetect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Item _))
-        {
             _detect.Add(other.gameObject);
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Item _))
-        {
             _detect.Remove(other.gameObject);
-        }
     }
 
     private void OnDetected(GameObject gameObject)
     {
         if (gameObject.TryGetComponent(out Item item))
-        {
             Detected?.Invoke(item);
-        }
     }
 
     private void OnUndetected(GameObject gameObject)
     {
         if (gameObject.TryGetComponent(out Item item))
-        {
             Undetected?.Invoke();
-        }
     }
 }

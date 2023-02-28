@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 class ThiefTransition : BaseTransition
 {
     private ItemDetect _itemDetect;
@@ -6,10 +8,6 @@ class ThiefTransition : BaseTransition
     private void Start()
     {
         _itemDetect = GetComponentInChildren<ItemDetect>();
-    }
-
-    private void OnEnable()
-    {
         _itemDetect.Detected += OnDetected;
     }
 
@@ -20,7 +18,7 @@ class ThiefTransition : BaseTransition
 
     private void OnDetected(Item item)
     {
-        TargetState.Init(item);
+        TargetState.Init(item.gameObject);
 
         OpenTransit();
     }

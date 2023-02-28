@@ -31,32 +31,24 @@ public class PlayerDetect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player _))
-        {
             _detect.Add(other.gameObject);
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Player _))
-        {
             _detect.Remove(other.gameObject);
-        }
     }
 
     private void OnDetected(GameObject gameObject)
     {
         if (gameObject.TryGetComponent(out Player player))
-        {
             Detected?.Invoke(player);
-        }
     }
 
     private void OnUndetected(GameObject gameObject)
     {
         if (gameObject.TryGetComponent(out Player _))
-        {
             Undetected?.Invoke();
-        }
     }
 }

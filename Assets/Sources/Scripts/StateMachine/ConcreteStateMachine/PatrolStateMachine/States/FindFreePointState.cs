@@ -45,7 +45,8 @@ public class FindFreePointState : State<WayPoint>
         {
             if (_walkingWay.TryGetWayPoint(out WayPoint nextWayPoint))
             {
-                _walkingWay.SetFreePoint(Target);
+                _walkingWay.SetFreePoint(Target?.GetComponent<WayPoint>());
+                Debug.Log(nextWayPoint.name); 
                 Init(nextWayPoint);
                 FoundPoint?.Invoke();
                 isCorrectPoints = true;

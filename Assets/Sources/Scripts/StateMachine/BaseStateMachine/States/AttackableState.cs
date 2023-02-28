@@ -6,11 +6,13 @@
     {
         _attackStateMachine = GetComponentInChildren<AttackStateMachine>();
         _attackStateMachine.enabled = false;
+        base.Exit();
     }
 
     public override void Enter()
     {
         _attackStateMachine.enabled = true;
+        _attackStateMachine.Init(Target);
 
         base.Enter();
     }
@@ -20,10 +22,5 @@
         _attackStateMachine.enabled = false;
 
         base.Exit();
-    }
-
-    public override void Init(Player player)
-    {
-        _attackStateMachine.Init(player);
     }
 }

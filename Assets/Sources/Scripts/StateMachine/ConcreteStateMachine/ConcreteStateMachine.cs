@@ -34,9 +34,9 @@ public class ConcreteStateMachine<T> : MonoBehaviour
             Transit(nextState);
     }
 
-    public void Init(T target)
+    public void Init(GameObject target)
     {
-        _startState.Init(target);
+        _startState.Init(target.GetComponent<T>());
     }
 
     private void ResetMachine()

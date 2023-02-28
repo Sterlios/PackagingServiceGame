@@ -6,11 +6,13 @@
     {
         _thiefStateMachine = GetComponentInChildren<ThiefStateMachine>();
         _thiefStateMachine.enabled = false;
+        base.Exit();
     }
 
     public override void Enter()
     {
         _thiefStateMachine.enabled = true;
+        _thiefStateMachine.Init(Target);
 
         base.Enter();
     }
@@ -20,10 +22,5 @@
         _thiefStateMachine.enabled = false;
 
         base.Exit();
-    }
-
-    public override void Init(Item item)
-    {
-        _thiefStateMachine.Init(item);
     }
 }

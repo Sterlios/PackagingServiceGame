@@ -2,6 +2,8 @@
 
 public abstract class BaseState : MonoBehaviour
 {
+    protected GameObject Target { get; private set; }
+
     [SerializeField] private BaseTransition[] _transitions;
 
     public BaseState NextState
@@ -14,11 +16,6 @@ public abstract class BaseState : MonoBehaviour
 
             return null;
         }
-    }
-
-    private void Awake()
-    {
-        Exit();
     }
 
     public virtual void Enter()
@@ -43,13 +40,8 @@ public abstract class BaseState : MonoBehaviour
         }
     }
 
-    public virtual void Init(Player player)
+    public virtual void Init(GameObject gameObject)
     {
-
-    }
-
-    public virtual void Init(Item item)
-    {
-
+        Target = gameObject;
     }
 }

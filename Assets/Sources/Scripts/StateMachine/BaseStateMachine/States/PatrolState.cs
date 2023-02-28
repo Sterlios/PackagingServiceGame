@@ -6,6 +6,7 @@
     {
         _patrolStateMachine = GetComponentInChildren<PatrolStateMachine>();
         _patrolStateMachine.enabled = false;
+        base.Exit();
     }
 
     public override void Enter()

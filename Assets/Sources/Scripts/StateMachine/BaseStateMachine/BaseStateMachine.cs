@@ -6,11 +6,6 @@ public class BaseStateMachine : MonoBehaviour
     
     private BaseState _currentState;
 
-    public void Awake()
-    {
-        ResetMachine();
-    }
-
     private void Update()
     {
         if (_currentState == null)
