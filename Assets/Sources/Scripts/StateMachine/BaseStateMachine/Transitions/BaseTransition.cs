@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class BaseTransition : MonoBehaviour
+public abstract class BaseTransition : MonoBehaviour
 {
     [SerializeField] private BaseState _targetState;
 

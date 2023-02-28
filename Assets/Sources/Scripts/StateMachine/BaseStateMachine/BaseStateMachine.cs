@@ -6,12 +6,17 @@ public class BaseStateMachine : MonoBehaviour
     
     private BaseState _currentState;
 
+    public void Awake()
+    {
+        ResetMachine();
+    }
+
     private void Update()
     {
         if (_currentState == null)
             ResetMachine();
 
-        BaseState nextState = _currentState.GetNextState();
+        BaseState nextState = _currentState.NextState;
 
         if (nextState != null)
             Transit(nextState);

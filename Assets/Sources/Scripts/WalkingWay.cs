@@ -38,8 +38,11 @@ public class WalkingWay : MonoBehaviour
 
     private void ChangeListForWayPoint(List<WayPoint> removingList, List<WayPoint> addingList, WayPoint wayPoint)
     {
-        removingList.Remove(wayPoint);
-        addingList.Add(wayPoint);
+        if (wayPoint != null)
+        {
+            removingList.Remove(wayPoint);
+            addingList.Add(wayPoint);
+        }
     }
 
     private WayPoint GetWayPoint()

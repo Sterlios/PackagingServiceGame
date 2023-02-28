@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(MoveToPointTransition))]
-public class MoveToPointState : State<WayPoint>
+public class MoveToPlayerState : State<Player>
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotateSpeed;
@@ -26,16 +25,13 @@ public class MoveToPointState : State<WayPoint>
         _animator = GetComponentInParent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_walkAnimationName))
-            _animator.Play(_walkAnimationHash);
-    }
-
     private void Update()
     {
         if (_moveJob == null)
         {
+            if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_walkAnimationName))
+                _animator.Play(_walkAnimationHash);
+
             _moveJob = StartCoroutine(Move());
             _rotateJob = StartCoroutine(Rotate());
         }
@@ -49,7 +45,6 @@ public class MoveToPointState : State<WayPoint>
         if (_rotateJob != null)
             StopCoroutine(_rotateJob);
 
-        _animator.StopPlayback();
         _moveJob = null;
         _rotateJob = null;
     }

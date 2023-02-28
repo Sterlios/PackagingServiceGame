@@ -8,12 +8,16 @@ public class FindFreePointState : State<WayPoint>
 
     private WaitForSeconds _wait = new WaitForSeconds(0.5f);
     private Coroutine _lookingForJob;
+    private static string _idleAnimationName = "Idle";
+    private int _idleAnimationHash = Animator.StringToHash(_idleAnimationName);
+    private Animator _animator;
 
     public event UnityAction FoundPoint;
 
-    private void Awake()
+    private void Start()
     {
         _walkingWay = GetComponentInParent<EnemySpawner>().PatrolWay;
+        _animator = GetComponentInParent<Animator>();
     }
 
     private void OnDisable()
@@ -32,37 +36,23 @@ public class FindFreePointState : State<WayPoint>
 
     private IEnumerator LookingForFreePoint()
     {
-        WayPoint nextWayPoint = Target;
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_idleAnimationName))
+            _animator.Play(_idleAnimationHash);
 
-        bool IsCorrectPoints = false;
+        bool isCorrectPoints = false;
 
-        while (IsCorrectPoints != true)
+        while (!isCorrectPoints)
         {
-            _walkingWay.TryGetWayPoint(out nextWayPoint);
-
-            if (HasTarget)
-                if (nextWayPoint != null)
-                    IsCorrectPoints = nextWayPoint.Id != Target.Id;
-                else
-                    IsCorrectPoints = false;
-            else if (nextWayPoint != null)
-                IsCorrectPoints = true;
-            else
-                IsCorrectPoints = false;
-
-            if (IsCorrectPoints == true)
+            if (_walkingWay.TryGetWayPoint(out WayPoint nextWayPoint))
             {
-                if (Target != null)
-                    _walkingWay.SetFreePoint(Target);
-
+                _walkingWay.SetFreePoint(Target);
                 Init(nextWayPoint);
-
                 FoundPoint?.Invoke();
+                isCorrectPoints = true;
             }
 
             yield return _wait;
         }
-
     }
 }
 

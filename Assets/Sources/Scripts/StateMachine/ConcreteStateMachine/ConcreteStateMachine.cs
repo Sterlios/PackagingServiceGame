@@ -11,6 +11,15 @@ public class ConcreteStateMachine<T> : MonoBehaviour
         ResetMachine();
     }
 
+    private void OnDisable()
+    {
+        if (_currentState != null)
+        {
+            _currentState.Exit();
+            _currentState = null;
+        }
+    }
+
     private void Update()
     {
         if (_currentState == null)
@@ -23,6 +32,11 @@ public class ConcreteStateMachine<T> : MonoBehaviour
 
         if (nextState != null)
             Transit(nextState);
+    }
+
+    public void Init(T target)
+    {
+        _startState.Init(target);
     }
 
     private void ResetMachine()
